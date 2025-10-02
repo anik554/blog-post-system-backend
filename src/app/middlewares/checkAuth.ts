@@ -13,23 +13,19 @@ export const checkAuth =
       if (!accessToken) {
         throw new AppError(StatusCodes.FORBIDDEN, "Token Not Received");
       }
+      
       const verifiedToken = verifyToken(
         accessToken,
         envVars.JWT_ACCESS_SECRET
       ) as JwtPayload;
-      if (!verifiedToken) {
-        throw new AppError(
-          StatusCodes.FORBIDDEN,
-          "You are not authorized ",
-          verifiedToken
-        );
-      }
+
       if (!authRoles.includes(verifiedToken.role)) {
         throw new AppError(
           StatusCodes.FORBIDDEN,
           "You are not permitted to view this route!!"
         );
       }
+      req.user = verifiedToken
       next();
     } catch (error) {
       next(error);
