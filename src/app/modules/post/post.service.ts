@@ -57,6 +57,10 @@ const getAllPost = async () => {
 };
 
 const deletePost = async (id:string) => {
+  const existingPost = await Post.findById(id);
+  if (!existingPost) {
+    throw new Error("Post Not Found.");
+  }
   await Post.findByIdAndDelete(id)
   return null;
 };
