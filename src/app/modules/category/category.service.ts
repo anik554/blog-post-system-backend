@@ -42,8 +42,12 @@ const updateCategory = async (id: string, payload: Partial<ICategory>) => {
   return updateCategory;
 };
 
-const deleteCategory = async (id:string) => {
-  await Category.findByIdAndDelete(id)
+const deleteCategory = async (id: string) => {
+  const existingCategory = await Category.findById(id);
+  if (!existingCategory) {
+    throw new Error("Category Not Found.");
+  }
+  await Category.findByIdAndDelete(id);
   return null;
 };
 
@@ -51,5 +55,5 @@ export const CategoryServices = {
   createCategory,
   getAllCategories,
   updateCategory,
-  deleteCategory
+  deleteCategory,
 };

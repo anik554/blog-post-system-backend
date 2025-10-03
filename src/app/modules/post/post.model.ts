@@ -11,7 +11,7 @@ const postSchema = new Schema<IPost>(
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
     likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
 
 export const Post = model<IPost>("Post", postSchema);
