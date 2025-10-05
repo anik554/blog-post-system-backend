@@ -12,10 +12,11 @@ interface EnvConfig {
   BCRYPT_SALT_ROUND:string
   ADMIN_EMAIL:string;
   ADMIN_PASSWORD:string;
+  FRONTEND_URL:string;
 }
 
 const loadEnvVariables = (): EnvConfig => {
-  const requiredEnvVariables: string[] = ["PORT", "DB_URL", "NODE_ENV","JWT_ACCESS_SECRET","JWT_ACCESS_EXPIRES","BCRYPT_SALT_ROUND","ADMIN_EMAIL","ADMIN_PASSWORD","JWT_REFRESH_SECRET","JWT_REFRESH_EXPIRED"];
+  const requiredEnvVariables: string[] = ["PORT", "DB_URL", "NODE_ENV","JWT_ACCESS_SECRET","JWT_ACCESS_EXPIRES","BCRYPT_SALT_ROUND","ADMIN_EMAIL","ADMIN_PASSWORD","JWT_REFRESH_SECRET","JWT_REFRESH_EXPIRED","FRONTEND_URL"];
   requiredEnvVariables.forEach((key) => {
     if (!process.env[key]) {
       throw new Error(`Missing Required environment variable ${key}`);
@@ -31,7 +32,8 @@ const loadEnvVariables = (): EnvConfig => {
     JWT_REFRESH_EXPIRED: process.env.JWT_REFRESH_EXPIRED as string,
     BCRYPT_SALT_ROUND: process.env.BCRYPT_SALT_ROUND as string,
     ADMIN_EMAIL: process.env.ADMIN_EMAIL as string,
-    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD as string
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD as string,
+    FRONTEND_URL: process.env.FRONTEND_URL as string
 
   };
 };
