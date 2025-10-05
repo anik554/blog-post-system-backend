@@ -108,7 +108,8 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true  ,                         /* Skip type checking all .d.ts files. */
+    "typeRoots": ["./src/app/interfaces", "./node_modules/@types"]
   },
-  "include": ["./src/app/interfaces/index.d.ts"]
+  "include": ["./src/app/interfaces/index.d.ts","src/app/interfaces/index.d.ts"],
 }

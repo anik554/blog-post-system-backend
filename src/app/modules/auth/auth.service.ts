@@ -8,6 +8,7 @@ import { envVars } from "../../config/env";
 import { JwtPayload } from "jsonwebtoken";
 
 const creadentialsLogin = async (payload: Partial<IUser>) => {
+  console.log("payload",payload)
   const { email, password } = payload;
   const isUserExist = await User.findOne({ email }).lean();
 
