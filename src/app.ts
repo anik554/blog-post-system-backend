@@ -11,7 +11,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 const allowedOrigins = [
-  "https://blog-post-backend-p1u2dwt3n-aniks-projects-d10b87e1.vercel.app",
+  "https://blog-post-backend-ten.vercel.app",
 ].filter(Boolean);
 
 app.use(
