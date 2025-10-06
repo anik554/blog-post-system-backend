@@ -9,15 +9,12 @@ const routers_1 = require("./app/routers");
 const globalErrorHandlers_1 = require("./app/middlewares/globalErrorHandlers");
 const notFound_1 = __importDefault(require("./app/middlewares/notFound"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const env_1 = require("./app/config/env");
 const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 const allowedOrigins = [
-    "http://localhost:5000",
-    "https://blog-post-system-frontend-6in0pk2pc-aniks-projects-d10b87e1.vercel.app",
-    env_1.envVars.FRONTEND_URL,
+    "https://blog-post-backend-p1u2dwt3n-aniks-projects-d10b87e1.vercel.app",
 ].filter(Boolean);
 app.use((0, cors_1.default)({
     origin: function (origin, callback) {
