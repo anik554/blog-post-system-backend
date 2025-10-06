@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthServices = void 0;
+/* eslint-disable no-console */
 const http_status_codes_1 = require("http-status-codes");
 const user_model_1 = require("../user/user.model");
 const AppError_1 = __importDefault(require("../../errorHelpers/AppError"));

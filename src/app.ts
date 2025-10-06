@@ -13,7 +13,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
-    origin: envVars.FRONTEND_URL,
+    origin: [envVars.FRONTEND_URL,"https://blog-post-system-frontend.vercel.app"],
     credentials: true
 }))
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
