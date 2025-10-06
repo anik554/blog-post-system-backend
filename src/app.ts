@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5000",
-  "https://blog-post-system-frontend-6in0pk2pc-aniks-projects-d10b87e1.vercel.app",
+  "https://blog-post-backend-p1u2dwt3n-aniks-projects-d10b87e1.vercel.app/api/v1",
   envVars.FRONTEND_URL,
 ].filter(Boolean);
 
