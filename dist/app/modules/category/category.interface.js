@@ -1,0 +1,27 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CategoryType = void 0;
+var CategoryType;
+(function (CategoryType) {
+    CategoryType["DOT_NET"] = ".NET";
+    CategoryType["AI"] = "AI";
+    CategoryType["BLOCKCHAIN"] = "Blockchain";
+    CategoryType["BLOG"] = "Blog";
+    CategoryType["BUSINESS"] = "Business";
+    CategoryType["DATA_ENGINEERING"] = "Data Engineering";
+    CategoryType["DBI"] = "DBI";
+    CategoryType["GOLANG"] = "Golang";
+    CategoryType["JAVA"] = "Java";
+    CategoryType["JAVASCRIPT"] = "JavaScript";
+    CategoryType["MOBILE_APP_DEVELOPMENT"] = "Mobile App Development";
+    CategoryType["MVP"] = "MVP";
+    CategoryType["PERSONAL"] = "Personal";
+    CategoryType["PROGRAMMING"] = "Programming & Development";
+    CategoryType["PYTHON"] = "Python";
+    CategoryType["REACT"] = "React";
+    CategoryType["SOFTWARE_DEVELOPMENT"] = "Software Development";
+    CategoryType["SQL_SERVER"] = "SQL Server";
+    CategoryType["STAFF_AUGMENTATION"] = "Staff Augmentation";
+    CategoryType["TECHNOLOGY"] = "Technology";
+    CategoryType["WEB"] = "Web";
+})(CategoryType || (exports.CategoryType = CategoryType = {}));
