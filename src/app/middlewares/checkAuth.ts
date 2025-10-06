@@ -25,7 +25,7 @@ export const checkAuth = (...authRoles: string[]): RequestHandler => {
         );
       }
       
-      req.user = verifiedToken;
+      (req as JwtPayload).user = verifiedToken;
       next();
     } catch (error) {
       next(error);
