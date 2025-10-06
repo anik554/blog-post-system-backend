@@ -12,10 +12,24 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({
-    origin: [envVars.FRONTEND_URL,"https://blog-post-system-frontend.vercel.app"],
-    credentials: true
-}))
+const allowedOrigins = [
+  "http://localhost:5000",
+  "https://blog-post-system-frontend-6in0pk2pc-aniks-projects-d10b87e1.vercel.app",
+  envVars.FRONTEND_URL,
+].filter(Boolean);
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.use("/api/v1", router);

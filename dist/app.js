@@ -15,7 +15,7 @@ const app = (0, express_1.default)();
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: [env_1.envVars.FRONTEND_URL, "https://blog-post-system-frontend.vercel.app"],
+    origin: [env_1.envVars.FRONTEND_URL, "https://blog-post-system-frontend-6in0pk2pc-aniks-projects-d10b87e1.vercel.app"],
     credentials: true
 }));
 app.use("/uploads", express_1.default.static(path_1.default.join(__dirname, "../uploads")));
