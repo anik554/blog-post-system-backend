@@ -12,7 +12,7 @@ export const checkAuth = (...authRoles: string[]): RequestHandler => {
       if (!accessToken) {
         throw new AppError(StatusCodes.FORBIDDEN, "Token Not Received");
       }
-      
+
       const verifiedToken = verifyToken(
         accessToken,
         envVars.JWT_ACCESS_SECRET
