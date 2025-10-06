@@ -14,9 +14,21 @@ const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
+const allowedOrigins = [
+    "http://localhost:5000",
+    "https://blog-post-system-frontend-6in0pk2pc-aniks-projects-d10b87e1.vercel.app",
+    env_1.envVars.FRONTEND_URL,
+].filter(Boolean);
 app.use((0, cors_1.default)({
-    origin: [env_1.envVars.FRONTEND_URL, "https://blog-post-system-frontend-6in0pk2pc-aniks-projects-d10b87e1.vercel.app"],
-    credentials: true
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
 }));
 app.use("/uploads", express_1.default.static(path_1.default.join(__dirname, "../uploads")));
 app.use("/api/v1", routers_1.router);
