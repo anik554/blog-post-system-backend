@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { StatusCodes } from "http-status-codes";
 import { User } from "../user/user.model";
 import AppError from "../../errorHelpers/AppError";
