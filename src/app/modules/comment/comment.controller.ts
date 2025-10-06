@@ -19,7 +19,7 @@ const updateComment = catchAsync(
   async (req: Request, res: Response) => {
     const commentId = req.params.id;
     const payload = req.body;
-     const verifiedToken = res.locals.user as JwtPayload;
+    const verifiedToken = (req as JwtPayload).user;
 
     const comment = await CommentServices.updateComment(commentId, payload, verifiedToken);
 

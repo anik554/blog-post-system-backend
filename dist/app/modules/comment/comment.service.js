@@ -1,17 +1,26 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommentServices = void 0;
 const comment_model_1 = require("./comment.model");
-const createComment = async (payload) => {
-    const existingComment = await comment_model_1.Comment.findOne({ text: payload.text });
+const createComment = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const existingComment = yield comment_model_1.Comment.findOne({ text: payload.text });
     if (existingComment) {
         throw new Error("Comment already exists.");
     }
-    const comment = await comment_model_1.Comment.create(payload);
+    const comment = yield comment_model_1.Comment.create(payload);
     return comment;
-};
-const updateComment = async (id, payload, verifiedToken) => {
-    const existingComment = await comment_model_1.Comment.findById(id);
+});
+const updateComment = (id, payload, verifiedToken) => __awaiter(void 0, void 0, void 0, function* () {
+    const existingComment = yield comment_model_1.Comment.findById(id);
     if (!existingComment) {
         throw new Error("Comment Not Found.");
     }
@@ -20,7 +29,7 @@ const updateComment = async (id, payload, verifiedToken) => {
         throw new Error("You are not allowed to update this comment.");
     }
     if (payload.title) {
-        const duplicateComment = await comment_model_1.Comment.findOne({
+        const duplicateComment = yield comment_model_1.Comment.findOne({
             title: payload.title,
             _id: { $ne: id },
         });
@@ -28,30 +37,30 @@ const updateComment = async (id, payload, verifiedToken) => {
             throw new Error("A Comment with this title already exists.");
         }
     }
-    const updatedComment = await comment_model_1.Comment.findByIdAndUpdate(id, payload, {
+    const updatedComment = yield comment_model_1.Comment.findByIdAndUpdate(id, payload, {
         new: true,
         runValidators: true,
     });
     return updatedComment;
-};
-const getAllComment = async () => {
-    const comments = await comment_model_1.Comment.find({});
-    const totalComments = await comment_model_1.Comment.countDocuments();
+});
+const getAllComment = () => __awaiter(void 0, void 0, void 0, function* () {
+    const comments = yield comment_model_1.Comment.find({});
+    const totalComments = yield comment_model_1.Comment.countDocuments();
     return {
         data: comments,
         meta: {
             total: totalComments,
         },
     };
-};
-const deleteComment = async (id) => {
-    const existingComment = await comment_model_1.Comment.findById(id);
+});
+const deleteComment = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const existingComment = yield comment_model_1.Comment.findById(id);
     if (!existingComment) {
         throw new Error("Comment Not Found.");
     }
-    await comment_model_1.Comment.findByIdAndDelete(id);
+    yield comment_model_1.Comment.findByIdAndDelete(id);
     return null;
-};
+});
 exports.CommentServices = {
     createComment,
     getAllComment,

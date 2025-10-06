@@ -24,8 +24,8 @@ export const checkAuth = (...authRoles: string[]): RequestHandler => {
           "You are not permitted to view this route!!"
         );
       }
-
-      // ✅ Do NOT assign to req.user
+      
+      (req as JwtPayload).user = verifiedToken;
       next();
     } catch (error) {
       next(error);

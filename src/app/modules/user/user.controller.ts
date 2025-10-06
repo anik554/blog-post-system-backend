@@ -20,7 +20,7 @@ const createUser = catchAsync(
 
 const getMe = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const decodedToken = res.locals.user as JwtPayload;
+    const decodedToken = (req as JwtPayload).user as JwtPayload;
     const result = await UserServices.getMe(decodedToken.userId);
     sendResponse(res, {
       success: true,
@@ -34,7 +34,7 @@ const getMe = catchAsync(
 const updateUser = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.id;
-    const verifiedToken = res.locals.user;
+    const verifiedToken = (req as JwtPayload).user;
     const payload = req.body;
     const user = await UserServices.updateUser(userId, payload, verifiedToken);
     sendResponse(res, {

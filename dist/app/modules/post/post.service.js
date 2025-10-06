@@ -1,17 +1,26 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostServices = void 0;
 const post_model_1 = require("./post.model");
-const createPost = async (payload) => {
-    const existingPost = await post_model_1.Post.findOne({ title: payload.title });
+const createPost = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const existingPost = yield post_model_1.Post.findOne({ title: payload.title });
     if (existingPost) {
         throw new Error("Post already exists.");
     }
-    const post = await post_model_1.Post.create(payload);
+    const post = yield post_model_1.Post.create(payload);
     return post;
-};
-const updatePost = async (id, payload, verifiedToken) => {
-    const existingPost = await post_model_1.Post.findById(id);
+});
+const updatePost = (id, payload, verifiedToken) => __awaiter(void 0, void 0, void 0, function* () {
+    const existingPost = yield post_model_1.Post.findById(id);
     if (!existingPost) {
         throw new Error("Post Not Found.");
     }
@@ -20,7 +29,7 @@ const updatePost = async (id, payload, verifiedToken) => {
         throw new Error("You are not allowed to update this post.");
     }
     if (payload.title) {
-        const duplicatePost = await post_model_1.Post.findOne({
+        const duplicatePost = yield post_model_1.Post.findOne({
             title: payload.title,
             _id: { $ne: id },
         });
@@ -28,30 +37,30 @@ const updatePost = async (id, payload, verifiedToken) => {
             throw new Error("A Post with this title already exists.");
         }
     }
-    const updatedPost = await post_model_1.Post.findByIdAndUpdate(id, payload, {
+    const updatedPost = yield post_model_1.Post.findByIdAndUpdate(id, payload, {
         new: true,
         runValidators: true,
     });
     return updatedPost;
-};
-const getAllPost = async () => {
-    const posts = await post_model_1.Post.find({});
-    const totalposts = await post_model_1.Post.countDocuments();
+});
+const getAllPost = () => __awaiter(void 0, void 0, void 0, function* () {
+    const posts = yield post_model_1.Post.find({});
+    const totalposts = yield post_model_1.Post.countDocuments();
     return {
         data: posts,
         meta: {
             total: totalposts,
         },
     };
-};
-const deletePost = async (id) => {
-    const existingPost = await post_model_1.Post.findById(id);
+});
+const deletePost = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const existingPost = yield post_model_1.Post.findById(id);
     if (!existingPost) {
         throw new Error("Post Not Found.");
     }
-    await post_model_1.Post.findByIdAndDelete(id);
+    yield post_model_1.Post.findByIdAndDelete(id);
     return null;
-};
+});
 exports.PostServices = {
     createPost,
     getAllPost,

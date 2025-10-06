@@ -5,5 +5,4 @@ export interface IComment extends Document {
   user: Types.ObjectId;
   text: string;
   author: string;
-  title: string;
 }

@@ -19,6 +19,7 @@
     "@types/cookie-parser": "^1.4.9",
     "@types/cors": "^2.8.19",
     "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.0.0",
     "eslint": "^9.36.0",
@@ -27,7 +28,6 @@
     "typescript-eslint": "^8.45.0"
   },
   "dependencies": {
-    "@types/express": "^4.17.17",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.7.0",
     "cookie-parser": "^1.4.7",
