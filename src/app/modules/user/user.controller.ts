@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { catchAsync } from "../../utils/catchAsync";
@@ -21,7 +20,7 @@ const createUser = catchAsync(
 
 const getMe = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const decodedToken = req.user as JwtPayload;
+    const decodedToken = res.locals.user as JwtPayload;
     const result = await UserServices.getMe(decodedToken.userId);
     sendResponse(res, {
       success: true,
@@ -35,7 +34,7 @@ const getMe = catchAsync(
 const updateUser = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.id;
-    const verifiedToken = req.user;
+    const verifiedToken = res.locals.user;
     const payload = req.body;
     const user = await UserServices.updateUser(userId, payload, verifiedToken);
     sendResponse(res, {

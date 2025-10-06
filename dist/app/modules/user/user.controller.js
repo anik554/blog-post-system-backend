@@ -15,7 +15,7 @@ const createUser = (0, catchAsync_1.catchAsync)(async (req, res, next) => {
     });
 });
 const getMe = (0, catchAsync_1.catchAsync)(async (req, res, next) => {
-    const decodedToken = req.user;
+    const decodedToken = res.locals.user;
     const result = await user_service_1.UserServices.getMe(decodedToken.userId);
     (0, sendResponse_1.sendResponse)(res, {
         success: true,
@@ -26,7 +26,7 @@ const getMe = (0, catchAsync_1.catchAsync)(async (req, res, next) => {
 });
 const updateUser = (0, catchAsync_1.catchAsync)(async (req, res, next) => {
     const userId = req.params.id;
-    const verifiedToken = req.user;
+    const verifiedToken = res.locals.user;
     const payload = req.body;
     const user = await user_service_1.UserServices.updateUser(userId, payload, verifiedToken);
     (0, sendResponse_1.sendResponse)(res, {

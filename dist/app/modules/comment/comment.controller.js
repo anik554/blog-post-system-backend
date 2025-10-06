@@ -17,7 +17,7 @@ const createComment = (0, catchAsync_1.catchAsync)(async (req, res) => {
 const updateComment = (0, catchAsync_1.catchAsync)(async (req, res) => {
     const commentId = req.params.id;
     const payload = req.body;
-    const verifiedToken = req.user;
+    const verifiedToken = res.locals.user;
     const comment = await comment_service_1.CommentServices.updateComment(commentId, payload, verifiedToken);
     (0, sendResponse_1.sendResponse)(res, {
         success: true,

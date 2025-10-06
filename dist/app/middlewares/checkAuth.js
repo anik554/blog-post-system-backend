@@ -19,7 +19,6 @@ const checkAuth = (...authRoles) => {
             if (!authRoles.includes(verifiedToken.role)) {
                 throw new AppError_1.default(http_status_codes_1.StatusCodes.FORBIDDEN, "You are not permitted to view this route!!");
             }
-            req.user = verifiedToken;
             next();
         }
         catch (error) {

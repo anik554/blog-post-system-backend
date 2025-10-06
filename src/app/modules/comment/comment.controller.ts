@@ -3,6 +3,7 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { StatusCodes } from "http-status-codes";
 import { CommentServices } from "./comment.service";
+import { JwtPayload } from "jsonwebtoken";
 
 const createComment = catchAsync(async (req: Request, res: Response) => {
   const comment = await CommentServices.createComment(req.body);
@@ -18,7 +19,7 @@ const updateComment = catchAsync(
   async (req: Request, res: Response) => {
     const commentId = req.params.id;
     const payload = req.body;
-    const verifiedToken = req.user;
+     const verifiedToken = res.locals.user as JwtPayload;
 
     const comment = await CommentServices.updateComment(commentId, payload, verifiedToken);
 
